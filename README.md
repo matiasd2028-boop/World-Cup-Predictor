@@ -3,7 +3,7 @@
 > **Predicted Winner: France (28.0% probability)**  
 > Monte Carlo simulation of the 2026 FIFA World Cup using Elo-style ratings, FIFA rankings, betting odds, and live group stage data.
 
-![Prediction Chart](world_cup_2026_prediction (1).png)
+![Prediction Chart](world_cup_2026_prediction.png)
 
 ---
 
