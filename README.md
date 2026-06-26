@@ -1,6 +1,6 @@
 # 2026 FIFA World Cup - Statistical Prediction Model
 
-> **Predicted Winner: France (28.9% probability)**  
+> **Predicted Winner: France (28.0% probability)**  
 > Monte Carlo simulation of the 2026 FIFA World Cup using Elo-style ratings, FIFA rankings, betting odds, and live group stage data.
 
 ![Prediction Chart](world_cup_2026_prediction.png)
@@ -18,20 +18,31 @@ This project uses a **composite statistical model** to predict the winner of the
 
 ---
 
+## Data Timeline (as of June 26, 2026)
+
+| Groups | Status | Notes |
+|:------:|:------:|:------|
+| **A, B, C, D, E, F** | **COMPLETE** | All 3 matchdays finished. Includes Germany\'s shock 2-1 loss to Ecuador on June 26 |
+| **G, H, I, J, K, L** | **Matchday 1 & 2 done** | Matchday 3 played June 26-27; simulated in model |
+
+**Key result already included:** Germany\'s 2-1 defeat to Ecuador (June 26, Matchday 3) — this was a major upset that significantly hurt Germany\'s model probability.
+
+---
+
 ## Championship Probabilities
 
 | Rank | Team | Probability |
 |:----:|:-----|:-----------:|
-| 1 | **France** | **28.9%** |
-| 2 | Spain | 24.1% |
-| 3 | Argentina | 19.6% |
-| 4 | Brazil | 7.9% |
-| 5 | Portugal | 7.7% |
-| 6 | England | 7.6% |
-| 7 | Germany | 2.0% |
+| 1 | **France** | **28.0%** |
+| 2 | Spain | 24.0% |
+| 3 | Argentina | 19.8% |
+| 4 | Brazil | 8.2% |
+| 5 | England | 8.1% |
+| 6 | Portugal | 7.7% |
+| 7 | Germany | 2.2% |
 | 8 | Netherlands | 0.9% |
-| 9 | Croatia | 0.4% |
-| 10 | Morocco | 0.3% |
+| 9 | Croatia | 0.3% |
+| 10 | Morocco | 0.2% |
 
 ---
 
@@ -41,11 +52,6 @@ This project uses a **composite statistical model** to predict the winner of the
 ```
 Rating = 2100 - 20 * FIFA_Rank
 ```
-- Argentina (#1) → 2080
-- Spain (#2) → 2060
-- France (#3) → 2040
-- ...
-- New Zealand (#85) → 400
 
 ### 2. Market Adjustment (Betting Odds)
 American odds are converted to implied probabilities and normalized. Teams with better odds than their rank suggests get a rating boost:
@@ -61,16 +67,16 @@ Delta = Actual_Points - Expected_Points
 Rating += Delta * 15 + Goal_Difference * 3
 ```
 
-**Key adjustments:**
-- **France**: +85 pts (dominant 2-0 start, 6 GF, 1 GA)
+**Key adjustments from COMPLETED groups (A-F):**
+- **France**: +85 pts (dominant start: 2 wins, 6 GF, 1 GA)
 - **Netherlands**: +72 pts (5-1 demolition of Sweden)
-- **Germany**: -45 pts (shocking 2-1 loss to Ecuador)
+- **Germany**: -45 pts (shocking 2-1 loss to Ecuador on June 26, Matchday 3)
 - **USA**: +38 pts (strong home tournament start)
 
 ### 4. Match Simulation
 
-**Group Stage:**
-- Elo win probability with 15% draw chance
+**Group Stage (remaining matches):**
+- Groups G-L Matchday 3 is simulated using Elo probabilities with 15% draw chance
 - Goals modeled as Poisson distributions
 - Full group standings computed
 
@@ -119,7 +125,9 @@ This will:
 
 - **FIFA Rankings**: June 2026 official release
 - **Betting Odds**: Pre-tournament futures markets (DraftKings, Bet365, Pinnacle)
-- **Match Results**: Actual 2026 World Cup group stage results through June 26, 2026
+- **Match Results**: 
+  - Groups A-F: All 6 group stage games completed (through June 26)
+  - Groups G-L: 4 of 6 games completed (Matchday 1 & 2); remaining 2 games simulated
 
 ---
 
@@ -131,7 +139,7 @@ The model favors France for converging statistical signals:
 - **FIFA #2 ranking**: Only behind Argentina officially
 - **Dominant group stage**: 2 wins, 6 goals scored, 1 conceded (+5 GD) — best start of any contender
 - **Star power**: Mbappé and Dembélé performing at elite level
-- **Favorable bracket**: Simulations show France's side opening up after group stage
+- **Favorable bracket**: Simulations show France\'s side opening up after group stage
 - **Squad depth**: Quality at every position with minimal drop-off
 
 ---
@@ -140,17 +148,17 @@ The model favors France for converging statistical signals:
 
 | Team | Why They Could Win |
 |:-----|:-------------------|
-| **Spain (24.1%)** | Youngest squad in the tournament; Lamine Yamal healthy; Pedri/Rodri controlling midfield; most balanced attack |
-| **Argentina (19.6%)** | Defending champions; Messi's "Last Dance"; strong 2-0 start; tournament experience |
-| **Brazil (7.9%)** | Most World Cup titles ever (5); Vinícius Júnior in form; always dangerous in knockouts |
-| **England (7.6%)** | Tuchel's tactical setup; Kane & Bellingham; deep squad but questions about mentality |
+| **Spain (24.0%)** | Youngest squad in the tournament; Lamine Yamal healthy; Pedri/Rodri controlling midfield; most balanced attack |
+| **Argentina (19.8%)** | Defending champions; Messi\'s "Last Dance"; strong 2-0 start; tournament experience |
+| **Brazil (8.2%)** | Most World Cup titles ever (5); Vinícius Júnior in form; always dangerous in knockouts |
+| **England (8.1%)** | Tuchel\'s tactical setup; Kane & Bellingham; deep squad but questions about mentality |
 | **Portugal (7.7%)** | Ronaldo still scoring at 41; deep squad; Leão and Silva providing creativity |
 
 ---
 
 ## Limitations & Caveats
 
-- **Soccer is inherently unpredictable** — France at 28.9% means there's a **71% chance someone else wins**
+- **Soccer is inherently unpredictable** — France at 28.0% means there\'s a **72% chance someone else wins**
 - **Knockout volatility**: A single red card, penalty shootout, or bad day can eliminate any team
 - **Model does not capture**: mid-tournament injuries, tactical matchups, weather, referee decisions, locker room dynamics
 - **Third-place mapping**: Simplified FIFA bracket rules; actual slot assignments may vary slightly
@@ -160,8 +168,8 @@ The model favors France for converging statistical signals:
 
 ## License
 
-MIT License — feel free to fork, modify, and improve. If you use this model for betting, that's on you. 
+MIT License — feel free to fork, modify, and improve. If you use this model for betting, that\'s on you. 
 
 ---
 
-*Generated June 26, 2026. Data current through Matchday 2 of the group stage.*
+*Generated June 26, 2026. Groups A-F complete; Groups G-L Matchday 3 simulated.*
